@@ -1,16 +1,21 @@
-import { Link, useParams} from 'react-router-dom';
 import React from 'react';
-import {useState, useEffect} from 'react'; 
+import { useParams} from 'react-router-dom';
 
 
-export function CountryDetails( {allCountries} ) {
+export function CountryDetails( { allCountries } ) {
     const params = useParams();
-    const [country, setCountry] = useState();
+
+    const urlImage = "https://flagpedia.net/data/flags/icon/72x54/"
+
     const singleCountry = allCountries.filter((country) => {
         return country.alpha3Code === params.alpha;
     });
     
+
     return(
-        <p>{singleCountry[0].name.common}</p>
+        <>
+            <img src={urlImage + singleCountry[0].alpha2Code.toLowerCase() + '.png'} alt={singleCountry[0].name.common} />
+            <p>{singleCountry[0].name.common}</p>
+        </>
     );
 };
